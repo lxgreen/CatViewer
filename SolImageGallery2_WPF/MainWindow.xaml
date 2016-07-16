@@ -1,0 +1,30 @@
+﻿<Window x:Class="CatViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="C# 6 Training: A Cat Viewer by Alex Greenstein" WindowState="Normal">
+
+    <Window.Resources>
+        <ItemsPanelTemplate x:Key="ImageGalleryItemsPanelTemplate">
+            <WrapPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            </WrapPanel>
+        </ItemsPanelTemplate>
+
+        <DataTemplate x:Key="ListImageDataTemplate">
+            <Grid HorizontalAlignment="Left" Width="200" Height="200">
+                <ContentControl Content="{Binding Path=Thumbnail}"
+                                        Width="200" Height="200" />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="LbImageGallery"
+      Grid.Row="0" Grid.Column="0" ItemsSource="{ Binding FoundImages}"
+      ItemsPanel="{DynamicResource ImageGalleryItemsPanelTemplate}"
+      ItemTemplate="{StaticResource ListImageDataTemplate}">
+            <ListBox.Background>
+                <SolidColorBrush Color="Black"></SolidColorBrush>
+            </ListBox.Background>
+        </ListBox>
+    </Grid>
+</Window>
