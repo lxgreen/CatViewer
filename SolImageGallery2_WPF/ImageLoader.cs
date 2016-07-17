@@ -6,15 +6,16 @@ namespace CatViewer
 {
     public class ImageLoader
     {
-        public async Task<Stream> GetImageAsync(string url)
+        public async Task<Stream> GetImageStreamAsync(string url)
         {
-            var client = new HttpClient();
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync(url).ConfigureAwait(false);
 
-            var response = await client.GetAsync(url).ConfigureAwait(false);
+                if (!response.IsSuccessStatusCode) return null;
 
-            if (!response.IsSuccessStatusCode) return null;
-
-            return await response.Content.ReadAsStreamAsync();
+                return await response.Content.ReadAsStreamAsync();
+            }
         }
     }
 }

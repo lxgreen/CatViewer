@@ -35,9 +35,9 @@ namespace CatViewer
         {
             var urls = await ParseImageUrls(url);
 
-            foreach (var imageUrl in urls)
+            urls.ToList().ForEach(async imageUrl =>
             {
-                using (var stream = await _loader.GetImageAsync(imageUrl))
+                using (var stream = await _loader.GetImageStreamAsync(imageUrl))
                 {
                     var image = await Task<BitmapImage>.Factory.StartNew((streamObj) =>
                     {
@@ -52,20 +52,23 @@ namespace CatViewer
 
                     FoundImages.Add(new FoundImage { Thumbnail = new Image { Source = image } });
                 }
-            }
+            });
         }
 
         private async Task<IEnumerable<string>> ParseImageUrls(string url)
         {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "063a11d97f4743b68b037978a6b90bbe");
-            var response = await client.GetAsync(url).ConfigureAwait(false);
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "063a11d97f4743b68b037978a6b90bbe");
 
-            if (!response.IsSuccessStatusCode) { return Enumerable.Empty<string>(); }
+                var response = await client.GetAsync(url).ConfigureAwait(false);
 
-            var content = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode) { return Enumerable.Empty<string>(); }
 
-            return _parser.ExtractImageUrls(content);
+                var content = await response.Content.ReadAsStringAsync();
+
+                return _parser.ExtractImageUrls(content);
+            }
         }
     }
 }
