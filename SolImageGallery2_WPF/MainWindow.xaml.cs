@@ -13,8 +13,8 @@ namespace CatViewer
     {
         private const string Url = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=cat";
 
-        private ImageSourceExtractor _parser = new ImageSourceExtractor();
-        private ImageLoader _loader = new ImageLoader();
+        private readonly ImageSourceExtractor _parser = new ImageSourceExtractor();
+        private readonly ImageLoader _loader = new ImageLoader();
 
         public MainWindow()
         {
@@ -65,7 +65,7 @@ namespace CatViewer
 
             var content = await response.Content.ReadAsStringAsync();
 
-            return _parser.ExtractImageUrLs(content);
+            return _parser.ExtractImageUrls(content);
         }
     }
 }

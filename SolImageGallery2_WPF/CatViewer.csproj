@@ -106,24 +106,6 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Choji.png" />
-    <Resource Include="Images\Gaara.jpg" />
-    <Resource Include="Images\Jiraiya.png" />
-    <Resource Include="Images\Kakashi.jpg" />
-    <Resource Include="Images\Kiba.png" />
-    <Resource Include="Images\KillerBee.jpg" />
-    <Resource Include="Images\Lee.jpg" />
-    <Resource Include="Images\Might Guy.jpg" />
-    <Resource Include="Images\Naruto.png" />
-    <Resource Include="Images\Neji.png" />
-    <Resource Include="Images\Sai.jpg" />
-    <Resource Include="Images\Sasuke.jpeg" />
-    <Resource Include="Images\Shikamarunara.jpg" />
-    <Resource Include="Images\Shino.jpg" />
-    <Resource Include="Images\UchihaItachi.png" />
-    <Resource Include="Images\Yamato.jpg" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

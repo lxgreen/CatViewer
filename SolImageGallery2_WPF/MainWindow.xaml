@@ -11,8 +11,7 @@
 
         <DataTemplate x:Key="ListImageDataTemplate">
             <Grid HorizontalAlignment="Left" Width="200" Height="200">
-                <ContentControl Content="{Binding Path=Thumbnail}"
-                                        Width="200" Height="200" />
+                <ContentControl Content="{Binding Path=Thumbnail}" Width="200" Height="200" />
             </Grid>
         </DataTemplate>
     </Window.Resources>
