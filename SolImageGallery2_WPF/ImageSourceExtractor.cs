@@ -6,7 +6,7 @@ namespace CatViewer
 {
     public class ImageSourceExtractor
     {
-        public IEnumerable<string> ExtractImageURLs(string json)
+        public IEnumerable<string> ExtractImageUrls(string json)
         {
             var searchResult = JObject.Parse(json);
 

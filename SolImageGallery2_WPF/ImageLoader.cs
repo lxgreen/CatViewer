@@ -9,13 +9,12 @@ namespace CatViewer
         public async Task<Stream> GetImageAsync(string url)
         {
             var client = new HttpClient();
-            var response = await client.GetAsync(url);
+
+            var response = await client.GetAsync(url).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode) return null;
 
-            var stream = response.Content.ReadAsStreamAsync();
-
-            return await stream;
+            return await response.Content.ReadAsStreamAsync();
         }
     }
 }
